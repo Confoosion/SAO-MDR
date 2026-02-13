@@ -394,8 +394,8 @@ MonoBehaviour:
   minFlickTime: 0.2
   gravity: 4
   jumpForce: 10
-  minUpwardAngle: 60
-  dashForce: 5
+  minUpwardAngle: 50
+  dashForce: 6
   dashTime: 0.35
   showDebugGizmos: 1
 --- !u!50 &982348454
