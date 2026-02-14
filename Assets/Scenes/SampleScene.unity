@@ -391,8 +391,9 @@ MonoBehaviour:
   currentAction: 0
   moveSpeed: 5
   maxMoveDistance: 100
+  guardTime: 0.2
   minFlickTime: 0.2
-  minFlickPower: 100
+  minFlickPower: 60
   gravity: 4
   jumpForce: 15
   minUpwardAngle: 50

@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxMoveDistance;
 
+    [Header("Guard Settings")]
+    [SerializeField] private float guardTime;
+
     [Header("Flick Settings")]
     [SerializeField] private float minFlickTime;
     [SerializeField] private float minFlickPower;
@@ -61,17 +64,21 @@ public class PlayerMovement : MonoBehaviour
                     if(touch.phase == TouchPhase.Moved)
                     {
                         currentTouchPosition = touch.position;
-                        if(!isJumping && !isDashing)
+                        if(!isJumping && !isDashing && currentAction != Movement.Guarding)
                             CalculateMovement();
                     }
                     else if(touch.phase == TouchPhase.Stationary)
                     {
-                        
+                        if(Time.time - touchStartTime > guardTime && currentAction == Movement.Standing)
+                        {
+                            currentAction = Movement.Guarding;
+                        }
                     }
                     else if(touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                     {
                         if(currentAction == Movement.Standing || currentAction == Movement.Moving || currentAction == Movement.Guarding)
-                            DetectFlick();
+                            if(!DetectFlick())
+                                currentAction = Movement.Standing;
                         else
                             currentAction = Movement.Standing;
                         isTouching = false;
@@ -124,15 +131,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void DetectFlick()
+    bool DetectFlick()
     {
         float timeDelta = Time.time - touchStartTime;
         if(timeDelta <= 0) timeDelta = 0.001f;
 
-        if(timeDelta > minFlickTime)
+        if(timeDelta > minFlickTime && currentAction != Movement.Guarding)
         {
             Debug.Log("Flick too slow");
-            return;
+            return(false);
         }
 
         Vector2 swipeVector = currentTouchPosition - touchStartPosition;
@@ -142,7 +149,13 @@ public class PlayerMovement : MonoBehaviour
         if(swipeSpeed < minFlickPower)
         {
             Debug.Log("Flick too weak");
-            return;
+            return(false);
+        }
+
+        if(currentAction == Movement.Guarding)
+        {
+            Debug.Log("Parrying!");
+            return(true);
         }
 
         float angle = Mathf.Atan2(swipeVector.y, swipeVector.x) * Mathf.Rad2Deg;
@@ -164,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
                 dashCoroutine = StartCoroutine(Dash(swipeVector.normalized));
             }
         }
+        return(true);
     }
 
     void Jump(Vector2 flickDirection)
