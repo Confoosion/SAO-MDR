@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Flick Settings")]
     [SerializeField] private float minFlickTime;
+    [SerializeField] private float minFlickPower;
 
     [Header("Jump Settings")]
     [SerializeField] private float gravity;
@@ -135,7 +136,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector2 swipeVector = currentTouchPosition - touchStartPosition;
-        float swipeSpeed = swipeVector.magnitude / timeDelta;
+        float swipeSpeed = (swipeVector.magnitude / timeDelta) * 0.1f;
+
+        // Debug.Log("SWIPE POWER: " + swipeSpeed);
+        if(swipeSpeed < minFlickPower)
+        {
+            Debug.Log("Flick too weak");
+            return;
+        }
 
         float angle = Mathf.Atan2(swipeVector.y, swipeVector.x) * Mathf.Rad2Deg;
         bool isUpwardFlick = angle >= minUpwardAngle && angle <= (180f - minUpwardAngle);
@@ -161,7 +169,10 @@ public class PlayerMovement : MonoBehaviour
     void Jump(Vector2 flickDirection)
     {   
         playerRb.excludeLayers = jumpExcludeLayer;
+        playerRb.linearVelocity = Vector2.zero;
         startingJumpY = transform.position.y;
+
+        transform.position += Vector3.up * 0.1f;
 
         // Debug.Log("FLICK DIRECTION: " + flickDirection);
         playerRb.gravityScale = gravity;
