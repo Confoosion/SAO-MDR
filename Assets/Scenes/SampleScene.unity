@@ -395,6 +395,9 @@ MonoBehaviour:
   gravity: 4
   jumpForce: 10
   minUpwardAngle: 50
+  jumpExcludeLayer:
+    serializedVersion: 2
+    m_Bits: 64
   dashForce: 6
   dashTime: 0.35
   showDebugGizmos: 1
@@ -483,13 +486,13 @@ GameObject:
   - component: {fileID: 1542101245}
   - component: {fileID: 1542101244}
   - component: {fileID: 1542101243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skybox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1542101243
 BoxCollider2D:
   m_ObjectHideFlags: 0

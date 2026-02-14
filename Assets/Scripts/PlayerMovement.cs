@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float jumpForce;
     [SerializeField] private float minUpwardAngle;
+    [SerializeField] private LayerMask jumpExcludeLayer;
     private bool isJumping = false;
     private float startingJumpY;
 
@@ -79,30 +80,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
-        // #if UNITY_EDITOR
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     touchStartPosition = Input.mousePosition;
-        //     currentTouchPosition = Input.mousePosition;
-        //     touchStartTime = Time.time;
-        //     isTouching = true;
-        // }
-        // else if (Input.GetMouseButton(0) && isTouching)
-        // {
-        //     if(!isJumping)
-        //     {
-        //         currentTouchPosition = Input.mousePosition;
-        //         CalculateMovement();
-        //     }
-        // }
-        // else if (Input.GetMouseButtonUp(0))
-        // {
-        //     DetectFlick();
-        //     isTouching = false;
-        //     moveDirection = Vector2.zero;
-        // }
-        // #endif
     }
 
     void FixedUpdate()
@@ -118,7 +95,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRb.gravityScale = 0f;
                 transform.position = new Vector2(transform.position.x, startingJumpY);
+                currentAction = Movement.Standing;
                 isJumping = false;
+                playerRb.excludeLayers = 0;
             }
         }
         else if(!isDashing)
@@ -180,14 +159,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Jump(Vector2 flickDirection)
-    {
-        currentAction = Movement.Jumping;
-        isJumping = true;
+    {   
+        playerRb.excludeLayers = jumpExcludeLayer;
         startingJumpY = transform.position.y;
 
         // Debug.Log("FLICK DIRECTION: " + flickDirection);
         playerRb.gravityScale = gravity;
         playerRb.AddForce(new Vector2(flickDirection.x, 1f) * jumpForce, ForceMode2D.Impulse);
+
+        currentAction = Movement.Jumping;
+        isJumping = true;
     }
 
     IEnumerator Dash(Vector2 flickDirection)
