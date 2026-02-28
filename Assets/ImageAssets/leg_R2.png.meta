@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4e6871251ba1ad84d82eea10902edb82
+guid: 0801bad6b137e8e4397fdb82042f0a40
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -350902874258606406
-    second: arm_L_0
+      213: -5057860963078959026
+    second: leg_R2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,7 +50,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: 0.96209234, y: 0.7232217}
+  spritePivot: {x: 0.5085262, y: 0.90465564}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arm_L_0
+      name: leg_R2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 66
-        height: 46
-      alignment: 9
-      pivot: {x: 0.9353884, y: 0.6882393}
+        width: 40
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ab6f62de1b7512bf0800000000000000
-      internalID: -350902874258606406
+      spriteID: e401d54704edec9b0800000000000000
+      internalID: -5057860963078959026
       vertices: []
       indices: 
       edges: []
@@ -133,11 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      arm_L_0: -350902874258606406
+      leg_R2_0: -5057860963078959026
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

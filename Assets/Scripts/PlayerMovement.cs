@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private Movement currentAction;
+    [SerializeField] private CharacterAnimation _characterAnimation;
+    private Movement animationAction;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed;
@@ -66,6 +68,14 @@ public class PlayerMovement : MonoBehaviour
                         currentTouchPosition = touch.position;
                         if(!isJumping && !isDashing && currentAction != Movement.Guarding)
                             CalculateMovement();
+                        else if(currentAction == Movement.Guarding)
+                        {
+                            // Check if touch position is left or right so we can face the character left or right
+                            float touchDeltaX = currentTouchPosition.x - touchStartPosition.x;
+
+                            if(touchDeltaX != 0)
+                                transform.localScale = new Vector3(touchDeltaX > 0 ? 1 : -1, transform.localScale.y, transform.localScale.z);
+                        }
                     }
                     else if(touch.phase == TouchPhase.Stationary)
                     {
@@ -79,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                         if(currentAction == Movement.Standing || currentAction == Movement.Moving || currentAction == Movement.Guarding)
                             if(!DetectFlick())
                                 currentAction = Movement.Standing;
-                        else
+                        else if(currentAction != Movement.Jumping)
                             currentAction = Movement.Standing;
                         isTouching = false;
                         activeTouchId = -1;
@@ -96,6 +106,9 @@ public class PlayerMovement : MonoBehaviour
         {
             currentAction = Movement.Moving;
             playerRb.linearVelocity = moveDirection * moveSpeed;
+
+            if(moveDirection.x != 0)
+                transform.localScale = new Vector3(moveDirection.x > 0 ? 1 : -1, transform.localScale.y, transform.localScale.z);
         }
         else if(isJumping)
         {
@@ -111,6 +124,12 @@ public class PlayerMovement : MonoBehaviour
         else if(!isDashing)
         {
             playerRb.linearVelocity = Vector2.zero;
+        }
+
+        if(currentAction != animationAction)
+        {
+            animationAction = currentAction;
+            _characterAnimation.ChangeAnimation(animationAction);
         }
     }
 

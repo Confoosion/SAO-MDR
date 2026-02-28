@@ -15,5 +15,10 @@ MonoBehaviour:
   weaponType: 0
   element: 0
   attackSpeed: 1
-  comboSteps: []
+  comboSteps:
+  - damageMultiplier: 0
+    hitboxSize: {x: 0, y: 0}
+    hitboxOffset: {x: 0, y: 0}
+    activeTime: 0
+    recoveryTime: 0
   comboWindowTime: 0.4
