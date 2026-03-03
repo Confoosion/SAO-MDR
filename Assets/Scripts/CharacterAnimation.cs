@@ -28,6 +28,11 @@ public class CharacterAnimation : MonoBehaviour
                     animator.Play("Guard");
                     break;
                 }
+            case Movement.Dashing:
+                {
+                    animator.Play("Dash");
+                    break;
+                }
             
         }
     }

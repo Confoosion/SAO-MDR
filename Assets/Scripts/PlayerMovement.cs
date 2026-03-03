@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                         if(currentAction == Movement.Standing || currentAction == Movement.Moving || currentAction == Movement.Guarding)
                             if(!DetectFlick())
                                 currentAction = Movement.Standing;
-                        else if(currentAction != Movement.Jumping)
+                        else if(currentAction != Movement.Jumping && currentAction != Movement.Dashing)
                             currentAction = Movement.Standing;
                         isTouching = false;
                         activeTouchId = -1;
@@ -218,7 +218,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Dash(Vector2 flickDirection)
     {
         currentAction = Movement.Dashing;
+        animationAction = currentAction;
         isDashing = true;
+
+        _characterAnimation.ChangeAnimation(animationAction);
 
         playerRb.AddForce(flickDirection * dashForce, ForceMode2D.Impulse);
 
