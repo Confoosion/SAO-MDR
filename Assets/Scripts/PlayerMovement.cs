@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private Movement currentAction;
+    [SerializeField] private PlayerCombat playerCombat;
+    public Movement CurrentAction => currentAction;
+    public void SetAction(Movement action) { currentAction = action; }
     [SerializeField] private CharacterAnimation _characterAnimation;
     private Movement animationAction;
 
