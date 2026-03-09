@@ -10,15 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3e1c6c1d1296e74e8e8d3e6366999da, type: 3}
-  m_Name: SwordType
+  m_Name: WeaponType_Sword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponTypeData
   weaponType: 0
   element: 0
-  attackSpeed: 1
+  attackSpeed: 0.9
   comboSteps:
-  - damageMultiplier: 0
-    hitboxSize: {x: 0, y: 0}
-    hitboxOffset: {x: 0, y: 0}
-    activeTime: 0
-    recoveryTime: 0
+  - damageMultiplier: 0.9
+    hitboxSize: {x: 1.5, y: 1}
+    hitboxOffset: {x: 1, y: 0}
+    activeTime: 0.15
+    recoveryTime: 0.2
+  - damageMultiplier: 1
+    hitboxSize: {x: 1.5, y: 1}
+    hitboxOffset: {x: 1, y: 0}
+    activeTime: 0.15
+    recoveryTime: 0.2
+  - damageMultiplier: 1.4
+    hitboxSize: {x: 2, y: 1.2}
+    hitboxOffset: {x: 1.2, y: 0}
+    activeTime: 0.2
+    recoveryTime: 0.35
   comboWindowTime: 0.4

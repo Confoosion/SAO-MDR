@@ -221,6 +221,9 @@ public class PlayerCombat : MonoBehaviour
             float kbForce = CombatCalculator.CalculateKnockback(character.TotalStats, step) * knockbackForce;
             target.ApplyKnockback(knockDir, kbForce);
 
+            // Every landed hit charges the SP gauge
+            character.SPGauge.OnHitLanded();
+
             Debug.Log($"{character.Name} hit {hit.name} for {finalDamage} {character.EffectiveElement} damage" +
                       (isCounter ? " [COUNTER]" : ""));
         }

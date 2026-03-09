@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c9e59129d80c349a1ee4b6cec0dfd9, type: 3}
+  m_Name: Skill_ShadowSlash
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillName: Shadow Slash
+  description: 
+  icon: {fileID: 0}
+  spCost: 100
+  effects:
+  - effectType: 1
+    powerMultiplier: 2
+    hitboxSize: {x: 3, y: 2}
+    hitboxOffset: {x: 1.5, y: 0}
+    targetStat: 0
+    statModifierAmount: 0
+    duration: 0
+    burstRadius: 0
