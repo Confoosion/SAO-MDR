@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96f1ad124d43ffb4eaf0a99f81db9a33, type: 3}
-  m_Name: Character_Markas
+  m_Name: Character_SwordDark
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: Markas
+  characterName: Dark
   portrait: {fileID: 0}
   icon: {fileID: 0}
   element: 6
-  weaponType: 2
+  weaponType: 0
   rarity: 4
   baseStats:
-    hp: 100
-    attack: 50
-    defense: 40
-    speed: 30
-  statGrowthRate: 1.05
+    hp: 800
+    attack: 120
+    defense: 70
+    speed: 60
+  statGrowthRate: 1.06
+  skill: {fileID: 11400000, guid: 515fe08102cdd4649a67de3d1a2bb966, type: 2}

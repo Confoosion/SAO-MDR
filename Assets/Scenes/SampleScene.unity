@@ -349,8 +349,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 982348452}
-  - component: {fileID: 982348453}
+  - component: {fileID: 982348458}
+  - component: {fileID: 982348459}
   - component: {fileID: 982348457}
+  - component: {fileID: 982348453}
   - component: {fileID: 982348456}
   - component: {fileID: 982348454}
   - component: {fileID: 982348455}
@@ -514,6 +516,40 @@ MonoBehaviour:
   parryCounterMultiplier: 2
   knockbackForce: 5
   showHitboxGizmos: 1
+--- !u!114 &982348458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982348451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beadca4fc84d4c640a0943c9da1a2acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  characterData: {fileID: 11400000, guid: dee7335d0c14841499f7e3ca81abdcc1, type: 2}
+  weaponData: {fileID: 11400000, guid: 49542572524fe004f8552a67cd54e11f, type: 2}
+  startingLevel: 1
+  playerCombat: {fileID: 982348457}
+  skillExecutor: {fileID: 982348459}
+--- !u!114 &982348459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982348451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969944f7b4700dd4a9bb6b1b12cb12d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillExecutor
+  playerMovement: {fileID: 982348453}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  showSkillGizmos: 1
 --- !u!4 &1049421790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 149153467723284435, guid: 8d3ae5d145982974d917bae649738d9b, type: 3}

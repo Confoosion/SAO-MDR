@@ -89,11 +89,25 @@ public class PlayerMovement : MonoBehaviour
                     }
                     else if(touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                     {
-                        if(currentAction == Movement.Standing || currentAction == Movement.Moving || currentAction == Movement.Guarding)
+                        bool wasGuarding = currentAction == Movement.Guarding;
+
+                        if(currentAction == Movement.Standing || currentAction == Movement.Moving || wasGuarding)
+                        {
                             if(!DetectFlick())
-                                currentAction = Movement.Standing;
+                            {
+                                if(!wasGuarding && Time.time - touchStartTime < guardTime)
+                                    playerCombat?.OnTapAttack();
+                                else
+                                    currentAction = Movement.Standing;
+                            }
+                            else if(wasGuarding)
+                            {
+                                playerCombat?.OnParrySuccess();
+                            }
+                        }
                         else if(currentAction != Movement.Jumping && currentAction != Movement.Dashing)
                             currentAction = Movement.Standing;
+                            
                         isTouching = false;
                         activeTouchId = -1;
                         moveDirection = Vector2.zero;
